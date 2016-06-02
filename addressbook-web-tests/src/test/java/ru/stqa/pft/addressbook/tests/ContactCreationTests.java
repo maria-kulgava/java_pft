@@ -6,7 +6,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 /**
  * Created by Admin on 5/31/2016.
  */
-public class ContactCreationTest extends TestBase {
+public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation(){
