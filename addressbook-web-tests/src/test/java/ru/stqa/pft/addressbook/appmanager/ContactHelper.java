@@ -40,8 +40,8 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void initContactModification() {
-    click(By.cssSelector("img[alt=\"Edit\"]"));
+  public void initContactModification(int index) {
+    driver.findElements(By.cssSelector("img[alt=\"Edit\"]")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -69,10 +69,11 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = driver.findElements(By.cssSelector("tr[name=entry]"));
+    List<WebElement> elements = driver.findElements(By.name("entry"));
     for(WebElement element : elements){
-      String lastname = element.getCssValue("tr[name=entry] td:nth-of-type(2)");
-      String firstname = element.getCssValue("tr[name=entry] td:nth-of-type(3)");
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
       contacts.add(contact);
