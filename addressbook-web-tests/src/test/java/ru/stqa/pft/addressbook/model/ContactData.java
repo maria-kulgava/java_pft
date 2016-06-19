@@ -50,8 +50,9 @@ public class ContactData {
     return id;
   }
 
-  public void setId(int id) {
+  public ContactData setId(int id) {
     this.id = id;
+    return this;
   }
 
   @Override
