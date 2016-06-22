@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Admin on 6/1/2016.
@@ -28,7 +26,9 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
-    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
     type(By.name("email"), contactData.getEmail());
 
     if(creation){
@@ -97,12 +97,26 @@ public class ContactHelper extends HelperBase {
     List<WebElement> elements = driver.findElements(By.name("entry"));
     for(WebElement element : elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
+      String[] phones = cells.get(5).getText().split("\n");
+      ContactData contact = new ContactData()
+              .setId(id).setFirstname(firstname).setLastname(lastname).setHomePhone(phones[0]).setMobilePhone(phones[1]).setWorkPhone(phones[2]);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
+  }
+
+  public ContactData contactInfoFormEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = driver.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = driver.findElement(By.name("lastname")).getAttribute("value");
+    String homePhone = driver.findElement(By.name("home")).getAttribute("value");
+    String mobilePhone = driver.findElement(By.name("mobile")).getAttribute("value");
+    String workPhone = driver.findElement(By.name("work")).getAttribute("value");
+    driver.navigate().back();
+    return new ContactData()
+            .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone);
   }
 }

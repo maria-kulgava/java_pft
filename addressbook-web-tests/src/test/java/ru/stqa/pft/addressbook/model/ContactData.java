@@ -1,29 +1,17 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String mobile;
-  private final String email;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+  private String email;
   private String group;
 
-  public ContactData(String firstname, String lastname, String mobile, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.mobile = mobile;
-    this.email = email;
-    this.group = group;
-  }
-
-  public ContactData(int id, String firstname, String lastname, String mobile, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.mobile = mobile;
-    this.email = email;
-    this.group = group;
+  public int getId() {
+    return id;
   }
 
   public String getFirstname() {
@@ -34,8 +22,16 @@ public class ContactData {
     return lastname;
   }
 
-  public String getMobile() {
-    return mobile;
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
   }
 
   public String getEmail() {
@@ -46,12 +42,43 @@ public class ContactData {
     return group;
   }
 
-  public int getId() {
-    return id;
-  }
-
   public ContactData setId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData setFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData setLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData setHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData setMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData setWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+  public ContactData setEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData setGroup(String group) {
+    this.group = group;
     return this;
   }
 
