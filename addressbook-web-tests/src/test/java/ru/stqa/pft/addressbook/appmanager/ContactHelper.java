@@ -102,9 +102,10 @@ public class ContactHelper extends HelperBase {
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
+      String email = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
       ContactData contact = new ContactData()
-              .setId(id).setFirstname(firstname).setLastname(lastname).setAddress(address).setAllPhones(allPhones);
+              .setId(id).setFirstname(firstname).setLastname(lastname).setAddress(address).setEmail(email).setAllPhones(allPhones);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
@@ -117,9 +118,10 @@ public class ContactHelper extends HelperBase {
     String homePhone = driver.findElement(By.name("home")).getAttribute("value");
     String mobilePhone = driver.findElement(By.name("mobile")).getAttribute("value");
     String workPhone = driver.findElement(By.name("work")).getAttribute("value");
+    String email = driver.findElement(By.name("email")).getAttribute("value");
     String address = driver.findElement(By.name("address")).getText();
     driver.navigate().back();
     return new ContactData()
-            .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setAddress(address);
+            .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setAddress(address).setEmail(email);
   }
 }

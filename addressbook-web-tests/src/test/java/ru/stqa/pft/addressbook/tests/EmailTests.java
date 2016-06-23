@@ -10,13 +10,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Admin on 6/22/2016.
  */
-public class AddressTests extends TestBase {
+public class EmailTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().homePage();
     if(app.contact().all().size() == 0){
       app.contact().create(new ContactData()
-              .setFirstname("Nina").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333").setAddress("123456 Minsk, ul.Nika, 3").setEmail("nina.test@mail.ru").setGroup("test1"));
+              .setFirstname("Nina").setLastname("Test").setMobilePhone("111-11-11").setEmail("nina.test@mail.ru").setGroup("test1"));
     }
   }
 
@@ -25,7 +25,10 @@ public class AddressTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFormEditForm = app.contact().contactInfoFormEditForm(contact);
 
-    assertThat(contact.getAddress(), equalTo(contactInfoFormEditForm.getAddress()));
+    assertThat(cleaned(contact.getEmail()), equalTo(cleaned(contactInfoFormEditForm.getEmail())));
   }
 
+  public static String cleaned(String email){
+    return email.replaceAll("\\s", "");
+  }
 }
