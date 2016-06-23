@@ -31,6 +31,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
 
     if(creation){
       new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -102,10 +104,10 @@ public class ContactHelper extends HelperBase {
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
-      String email = cells.get(4).getText();
+      String allEmails = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
       ContactData contact = new ContactData()
-              .setId(id).setFirstname(firstname).setLastname(lastname).setAddress(address).setEmail(email).setAllPhones(allPhones);
+              .setId(id).setFirstname(firstname).setLastname(lastname).setAddress(address).setAllEmails(allEmails).setAllPhones(allPhones);
       contactCache.add(contact);
     }
     return new Contacts(contactCache);
@@ -119,9 +121,12 @@ public class ContactHelper extends HelperBase {
     String mobilePhone = driver.findElement(By.name("mobile")).getAttribute("value");
     String workPhone = driver.findElement(By.name("work")).getAttribute("value");
     String email = driver.findElement(By.name("email")).getAttribute("value");
+    String email2 = driver.findElement(By.name("email2")).getAttribute("value");
+    String email3 = driver.findElement(By.name("email3")).getAttribute("value");
     String address = driver.findElement(By.name("address")).getText();
     driver.navigate().back();
     return new ContactData()
-            .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone).setAddress(address).setEmail(email);
+            .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone)
+            .setAddress(address).setEmail(email).setEmail2(email2).setEmail3(email3);
   }
 }
