@@ -4,69 +4,13 @@
     <lastname>Lastname 0</lastname>
     <mobilePhone>MobilePhone 0</mobilePhone>
     <email>Email 0</email>
-    <group>Group 0</group>
+    <group>test1</group>
   </contact>
   <contact>
     <firstname>Firstname 1</firstname>
     <lastname>Lastname 1</lastname>
     <mobilePhone>MobilePhone 1</mobilePhone>
     <email>Email 1</email>
-    <group>Group 1</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 2</firstname>
-    <lastname>Lastname 2</lastname>
-    <mobilePhone>MobilePhone 2</mobilePhone>
-    <email>Email 2</email>
-    <group>Group 2</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 3</firstname>
-    <lastname>Lastname 3</lastname>
-    <mobilePhone>MobilePhone 3</mobilePhone>
-    <email>Email 3</email>
-    <group>Group 3</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 4</firstname>
-    <lastname>Lastname 4</lastname>
-    <mobilePhone>MobilePhone 4</mobilePhone>
-    <email>Email 4</email>
-    <group>Group 4</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 5</firstname>
-    <lastname>Lastname 5</lastname>
-    <mobilePhone>MobilePhone 5</mobilePhone>
-    <email>Email 5</email>
-    <group>Group 5</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 6</firstname>
-    <lastname>Lastname 6</lastname>
-    <mobilePhone>MobilePhone 6</mobilePhone>
-    <email>Email 6</email>
-    <group>Group 6</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 7</firstname>
-    <lastname>Lastname 7</lastname>
-    <mobilePhone>MobilePhone 7</mobilePhone>
-    <email>Email 7</email>
-    <group>Group 7</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 8</firstname>
-    <lastname>Lastname 8</lastname>
-    <mobilePhone>MobilePhone 8</mobilePhone>
-    <email>Email 8</email>
-    <group>Group 8</group>
-  </contact>
-  <contact>
-    <firstname>Firstname 9</firstname>
-    <lastname>Lastname 9</lastname>
-    <mobilePhone>MobilePhone 9</mobilePhone>
-    <email>Email 9</email>
-    <group>Group 9</group>
+    <group>test1</group>
   </contact>
 </list>
