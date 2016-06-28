@@ -30,14 +30,4 @@ public class ContactCreationTests extends TestBase {
 
   }
 
-// Вспомогательный тест для определения абсолютного пути к файлу
-//  @Test
-//  public void currentDir(){
-//    File currentDir = new File(".");
-//    System.out.println(currentDir.getAbsolutePath());
-//    File photo = new File("src/test/resources/smil1.jpg");
-//    System.out.println(photo.getAbsolutePath());
-//    System.out.println(photo.exists());
-//  }
-
 }
