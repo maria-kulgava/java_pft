@@ -42,7 +42,7 @@ public class ContactDataGenerator {
   private void run() throws IOException {
     List<ContactData> contacts = generateContacts(count);
     if (format.equals("csv")) {
-      save(contacts, new File(file));
+      saveAsCsv(contacts, new File(file));
     } else if (format.equals("xml")) {
       saveAsXml(contacts, new File(file));
     } else {
@@ -54,18 +54,18 @@ public class ContactDataGenerator {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
     String xml = xstream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try(Writer writer = new FileWriter(file)){
+      writer.write(xml);
+    }
   }
 
-  private void save(List<ContactData> contacts, File file) throws IOException {
+  private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-    for(ContactData contact: contacts){
-      writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getMobilePhone(), contact.getEmail(), contact.getGroup()));
+    try(Writer writer = new FileWriter(file)){
+      for(ContactData contact: contacts){
+        writer.write(String.format("%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getMobilePhone(), contact.getEmail(), contact.getGroup()));
+      }
     }
-    writer.close();
   }
 
   private List<ContactData> generateContacts(int count) {
