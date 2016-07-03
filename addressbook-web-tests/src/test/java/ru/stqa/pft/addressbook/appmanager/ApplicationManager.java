@@ -6,13 +6,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Admin on 6/1/2016.
  */
 public class ApplicationManager {
+  private final Properties properties;
   WebDriver driver;
 
   private SessionHelper sessionHelper;
@@ -23,9 +29,14 @@ public class ApplicationManager {
 
   public ApplicationManager(String browser) {
     this.browser = browser;
+    properties = new Properties(); // инициализация объекта properties
   }
 
-  public void init() {
+  public void init() throws IOException {
+    // Загрузка свойств, которые загружаются из конфигурационного файла
+    String target = System.getProperty("target", "local");
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
     if(Objects.equals(browser, BrowserType.FIREFOX)){
       driver = new FirefoxDriver();
     } else if(Objects.equals(browser, BrowserType.CHROME)){
@@ -34,12 +45,12 @@ public class ApplicationManager {
       driver = new InternetExplorerDriver();
     }
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.get("http://localhost/addressbook");
+    driver.get(properties.getProperty("web.baseUrl"));  // url-адрес берется из конфигурационного файла local.properties
     sessionHelper = new SessionHelper(driver);
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
     contactHelper = new ContactHelper(driver);
-    sessionHelper.login("admin", "secret");
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword")); // логин и пароль берутся из конфигурационного файла local.properties
   }
 
   public void stop() {
