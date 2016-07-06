@@ -2,26 +2,67 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity // анотация привязывает класс ContactData к БД
+@Table(name = "addressbook") // указываем название таблицы в БД
 public class ContactData {
+
   @XStreamOmitField
+  @Id // указываем, что атрибут Id используется как идентификатор в БД
+  @Column(name = "id") // привязка к столюцу таблици
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "firstname")
   private String firstname;
+
+  @Column(name = "lastname")
   private String lastname;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+
+  @Transient // означает, что поле будет пропущено (не будет извлекаться из БД)
   private String group;
+
+  @Transient
   private String allPhones;
+
+  @Transient
   private String allEmails;
-  private File photo;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public int getId() {
     return id;
@@ -76,7 +117,7 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData setId(int id) {
@@ -145,7 +186,7 @@ public class ContactData {
   }
 
   public ContactData setPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
