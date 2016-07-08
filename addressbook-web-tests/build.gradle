@@ -41,7 +41,10 @@ task testContacts(type: Test) {
     if (project.hasProperty('target')){
         systemProperty 'target', "${target}"
     }
-    if (project.hasProperty('verifyUI')){
-        systemProperty 'verifyUI', "${verifyUI}"
+    if (project.hasProperty('verifyGroupUI')){
+        systemProperty 'verifyGroupUI', "${verifyGroupUI}"
+    }
+    if (project.hasProperty('verifyContactUI')){
+        systemProperty 'verifyContactUI', "${verifyContactUI}"
     }
 }
