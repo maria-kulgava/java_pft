@@ -36,7 +36,7 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .setId(modifiedContact.getId()).setFirstname("Lida").setLastname("Test").setHomePhone("555").setMobilePhone("777").setWorkPhone("888")
-            .setEmail("lida.test@mail.ru").setPhoto(new File("src/test/resources/smil1.png"));
+            .setAddress("Minsk").setEmail("lida1@mail.ru").setEmail2("lida2@mail.ru").setEmail3("lida3@mail.ru").setPhoto(new File("src/test/resources/smil1.png"));
     app.contact().modify(contact);
 
     assertThat(app.group().count(), equalTo(before.size()));

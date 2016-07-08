@@ -6,9 +6,9 @@
     <mobilePhone>MobilePhone 0</mobilePhone>
     <workPhone>WorkPhone 0</workPhone>
     <address>Address 0</address>
-    <email>Email 0</email>
-    <email2>Email2 0</email2>
-    <email3>Email3 0</email3>
+    <email>Email1-0</email>
+    <email2>Email2-0</email2>
+    <email3>Email3-0</email3>
     <group>test 1</group>
     <photo>src\test\resources\smil1.png</photo>
   </contact>
@@ -19,9 +19,9 @@
     <mobilePhone>MobilePhone 1</mobilePhone>
     <workPhone>WorkPhone 1</workPhone>
     <address>Address 1</address>
-    <email>Email 1</email>
-    <email2>Email2 1</email2>
-    <email3>Email3 1</email3>
+    <email>Email1-1</email>
+    <email2>Email2-1</email2>
+    <email3>Email3-1</email3>
     <group>test 1</group>
     <photo>src\test\resources\smil1.png</photo>
   </contact>

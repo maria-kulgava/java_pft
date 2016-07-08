@@ -77,7 +77,7 @@ public class ContactDataGenerator {
 
       contacts.add(new ContactData().setFirstname(String.format("Firstname %s", i)).setLastname(String.format("Lastname %s", i))
               .setHomePhone(String.format("HomePhone %s", i)).setMobilePhone(String.format("MobilePhone %s", i)).setWorkPhone(String.format("WorkPhone %s", i))
-              .setAddress(String.format("Address %s", i)).setEmail(String.format("Email %s", i)).setEmail2(String.format("Email2 %s", i)).setEmail3(String.format("Email3 %s", i))
+              .setAddress(String.format("Address %s", i)).setEmail(String.format("Email1-%s", i)).setEmail2(String.format("Email2-%s", i)).setEmail3(String.format("Email3-%s", i))
               .setGroup("test 1").setPhoto(new File("src/test/resources/smil1.png")));
     }
     return contacts;
