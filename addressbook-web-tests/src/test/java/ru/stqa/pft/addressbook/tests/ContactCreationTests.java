@@ -42,14 +42,14 @@ public class ContactCreationTests extends TestBase {
 
   @Test (dataProvider = "validContacts")
   public void testContactCreation(ContactData contact){
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
 //    File photo = new File("src/test/resources/smil1.png");
 //    ContactData contact = new ContactData()
 //            .setFirstname("Inga").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333").setEmail("inga.test@mail.ru").setGroup("test1").setPhoto(photo);
     app.contact().create(contact);
 
     assertThat(app.group().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after,
             equalTo(before.withAdded(contact.setId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
 
