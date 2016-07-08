@@ -71,8 +71,14 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for(int i = 0; i < count; i++){
+// краткая информация о контакте
+//      contacts.add(new ContactData().setFirstname(String.format("Firstname %s", i)).setLastname(String.format("Lastname %s", i))
+//              .setMobilePhone(String.format("MobilePhone %s", i)).setEmail(String.format("Email %s", i)).setGroup("test 1"));
+
       contacts.add(new ContactData().setFirstname(String.format("Firstname %s", i)).setLastname(String.format("Lastname %s", i))
-              .setMobilePhone(String.format("MobilePhone %s", i)).setEmail(String.format("Email %s", i)).setGroup("test 1"));
+              .setHomePhone(String.format("HomePhone %s", i)).setMobilePhone(String.format("MobilePhone %s", i)).setWorkPhone(String.format("WorkPhone %s", i))
+              .setAddress(String.format("Address %s", i)).setEmail(String.format("Email %s", i)).setEmail2(String.format("Email2 %s", i)).setEmail3(String.format("Email3 %s", i))
+              .setGroup("test 1").setPhoto(new File("src/test/resources/smil1.png")));
     }
     return contacts;
   }

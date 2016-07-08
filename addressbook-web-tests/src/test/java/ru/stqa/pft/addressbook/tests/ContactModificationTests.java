@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -24,7 +25,8 @@ public class ContactModificationTests extends TestBase {
     app.goTo().homePage();
     if(app.contact().all().size() == 0){
       app.contact().create(new ContactData()
-              .setFirstname("Inga").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333").setEmail("inga.test@mail.ru").setGroup("test1"));
+              .setFirstname("Inga").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333")
+              .setEmail("inga.test@mail.ru").setGroup("test1").setPhoto(new File("src/test/resources/smil1.png")));
     }
   }
 
@@ -33,7 +35,8 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
-            .setId(modifiedContact.getId()).setFirstname("Lida").setLastname("Test").setHomePhone("555").setMobilePhone("777").setWorkPhone("888").setEmail("lida.test@mail.ru");
+            .setId(modifiedContact.getId()).setFirstname("Lida").setLastname("Test").setHomePhone("555").setMobilePhone("777").setWorkPhone("888")
+            .setEmail("lida.test@mail.ru").setPhoto(new File("src/test/resources/smil1.png"));
     app.contact().modify(contact);
 
     assertThat(app.group().count(), equalTo(before.size()));

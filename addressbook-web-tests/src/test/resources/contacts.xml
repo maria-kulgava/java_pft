@@ -2,15 +2,27 @@
   <contact>
     <firstname>Firstname 0</firstname>
     <lastname>Lastname 0</lastname>
+    <homePhone>HomePhone 0</homePhone>
     <mobilePhone>MobilePhone 0</mobilePhone>
+    <workPhone>WorkPhone 0</workPhone>
+    <address>Address 0</address>
     <email>Email 0</email>
+    <email2>Email2 0</email2>
+    <email3>Email3 0</email3>
     <group>test 1</group>
+    <photo>src\test\resources\smil1.png</photo>
   </contact>
   <contact>
     <firstname>Firstname 1</firstname>
     <lastname>Lastname 1</lastname>
+    <homePhone>HomePhone 1</homePhone>
     <mobilePhone>MobilePhone 1</mobilePhone>
+    <workPhone>WorkPhone 1</workPhone>
+    <address>Address 1</address>
     <email>Email 1</email>
+    <email2>Email2 1</email2>
+    <email3>Email3 1</email3>
     <group>test 1</group>
+    <photo>src\test\resources\smil1.png</photo>
   </contact>
 </list>
