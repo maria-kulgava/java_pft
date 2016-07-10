@@ -86,6 +86,16 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
+  public void deleteAllContacts() {
+    selectAllContacts();
+    deleteContact();
+    contactCache = null;
+  }
+
+  private void selectAllContacts() {
+    driver.findElement(By.cssSelector("input[id='MassCB']")).click();
+  }
+
   public boolean isThereContact() {
     return isElementPresent(By.name("selected[]"));
   }

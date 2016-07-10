@@ -77,6 +77,15 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
 
+  public void deleteAllGroups(Groups groups) {
+    for(GroupData group : groups) {
+        selectGroupById(group.getId());
+    }
+    deleteSelectedGroups();
+    groupCache = null;
+    returnToGroupPage();
+  }
+
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
