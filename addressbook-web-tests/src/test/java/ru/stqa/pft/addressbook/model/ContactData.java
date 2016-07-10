@@ -6,6 +6,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity // анотация привязывает класс ContactData к БД
@@ -52,9 +54,6 @@ public class ContactData {
   private String email3;
 
   @Transient // означает, что поле будет пропущено (не будет извлекаться из БД)
-  private String group;
-
-  @Transient
   private String allPhones;
 
   @Transient
@@ -63,6 +62,14 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @Transient // означает, что поле будет пропущено (не будет извлекаться из БД)
+  private String group;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id"))  // описываем связь между объектами двух типов
+  public Set<GroupData> groups = new HashSet<GroupData>();
 
   public int getId() {
     return id;
@@ -100,10 +107,6 @@ public class ContactData {
     return email3;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   public String getAllPhones() {
     return allPhones;
   }
@@ -118,6 +121,14 @@ public class ContactData {
 
   public File getPhoto() {
     return new File(photo);
+  }
+
+  public String getGroup() {
+    return group;
+  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   public ContactData setId(int id) {
@@ -165,11 +176,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData setGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public ContactData setAllPhones(String allPhones) {
     this.allPhones = allPhones;
     return this;
@@ -187,6 +193,16 @@ public class ContactData {
 
   public ContactData setPhoto(File photo) {
     this.photo = photo.getPath();
+    return this;
+  }
+
+  public ContactData setGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
     return this;
   }
 
@@ -241,3 +257,14 @@ public class ContactData {
     return result;
   }
 }
+
+//  @Transient // означает, что поле будет пропущено (не будет извлекаться из БД)
+//  private String group;
+
+//  public String getGroup() {
+//  return group;
+//}
+//  public ContactData setGroup(String group) {
+//    this.group = group;
+//    return this;
+//  }

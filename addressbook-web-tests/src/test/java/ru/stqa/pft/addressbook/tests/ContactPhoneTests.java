@@ -20,7 +20,7 @@ public class ContactPhoneTests extends TestBase {
     app.goTo().homePage();
     if(app.contact().all().size() == 0){
       app.contact().create(new ContactData()
-              .setFirstname("Nina").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333").setEmail("nina.test@mail.ru").setGroup("test1"));
+              .setFirstname("Nina").setLastname("Test").setHomePhone("111").setMobilePhone("222").setWorkPhone("333").setEmail("nina.test@mail.ru"));
     }
   }
 
