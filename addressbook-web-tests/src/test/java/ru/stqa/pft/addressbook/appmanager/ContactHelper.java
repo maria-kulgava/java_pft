@@ -100,15 +100,34 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
+  public void deleteContactFromGroup(ContactData contact, GroupData group) {
+    selectGroupWithContactsByName(group.getName());
+    selectContactById(contact.getId());
+    removeContact();
+    returnToContactList();
+    contactCache = null;
+  }
+
+  private void returnToContactList() {
+    click(By.linkText("home"));
+    new Select(driver.findElement(By.name("group"))).selectByVisibleText("[all]");
+
+  }
+
   private void selectGroupByName(String name) {
     new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(name);
-//    driver.findElement(By.xpath("//select[@name='to_group']/*[contains(text(),'" + name + "']")).click();
-    System.out.println("selectGroupByName");
+  }
+
+  private void selectGroupWithContactsByName(String name) {
+    new Select(driver.findElement(By.name("group"))).selectByVisibleText(name);
   }
 
   private void addContact() {
-    System.out.println("addContact");
     click(By.name("add"));
+  }
+
+  private void removeContact() {
+    click(By.name("remove"));
   }
 
   private void selectAllContacts() {
@@ -162,4 +181,6 @@ public class ContactHelper extends HelperBase {
             .setId(contact.getId()).setFirstname(firstname).setLastname(lastname).setHomePhone(homePhone).setMobilePhone(mobilePhone).setWorkPhone(workPhone)
             .setAddress(address).setEmail(email).setEmail2(email2).setEmail3(email3);
   }
+
+
 }

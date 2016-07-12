@@ -42,24 +42,24 @@ public class ContactAddToGroupTests extends TestBase {
     Groups contactGroups = selectedContact.getGroups();
     System.out.println("contactGroups: " + contactGroups);
 
-    for(GroupData group : groups){
-      while (!contactGroups.contains(group)){
+    for (GroupData group : groups) {
+      while (!contactGroups.contains(group)) {
         selectedGroup = group;
         System.out.println("selectedGroup1: " + selectedGroup.getId());
         break;
       }
     }
 
-    if(selectedGroup == null){
-    app.goTo().groupPage();
-    app.group().create(new GroupData().withName("test 778"));
-    groups = app.db().groups();
-    for (GroupData group : groups) {
-      if (group.getName().equals("test 778")) {
-        selectedGroup = group;
-        System.out.println("selectedGroup2: " + selectedGroup.getId() + " " + selectedGroup.getName());
+    if (selectedGroup == null) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test 778"));
+      groups = app.db().groups();
+      for (GroupData group : groups) {
+        if (group.getName().equals("test 778")) {
+          selectedGroup = group;
+          System.out.println("selectedGroup2: " + selectedGroup.getId() + " " + selectedGroup.getName());
+        }
       }
-    }
     }
 
   }
@@ -67,13 +67,12 @@ public class ContactAddToGroupTests extends TestBase {
 
   @Test
   public void testContactAddToGroup() {
-    System.out.println("selectedContact: " + selectedContact.getId());
-
     Groups beforeContactGroups = selectedContact.getGroups();
     System.out.println("beforeContactGroups: " + beforeContactGroups);
 
     app.goTo().homePage();
     app.contact().addContactToGroup(selectedContact, selectedGroup);
+    app.goTo().homePage();
 
 
     Contacts contacts = app.db().contacts();
