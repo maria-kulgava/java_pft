@@ -18,9 +18,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
   private final Properties properties;
-  WebDriver driver;
+  private WebDriver driver;
 
   private String browser;
+  private RegistrationHelper registrationHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -31,28 +32,42 @@ public class ApplicationManager {
     // Загрузка свойств, которые загружаются из конфигурационного файла
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-    if (Objects.equals(browser, BrowserType.FIREFOX)) {
-      driver = new FirefoxDriver();
-    } else if (Objects.equals(browser, BrowserType.CHROME)) {
-      driver = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)) {
-      driver = new InternetExplorerDriver();
-    }
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    driver.get(properties.getProperty("web.baseUrl"));  // url-адрес берется из конфигурационного файла local.properties
-
   }
 
   public void stop() {
-    driver.quit();
+    if(driver != null){
+      driver.quit();
+    }
   }
 
-  public HttpSession newSession(){
+  public HttpSession newSession() {
     return new HttpSession(this);
   }
 
   public String getProperty(String key) {
     return properties.getProperty(key);
+  }
+
+  public RegistrationHelper registration() {
+    if(registrationHelper == null){
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  public WebDriver getDriver() {
+    // Ленивая инициализация драйвкера
+    if (driver == null) {
+      if (Objects.equals(browser, BrowserType.FIREFOX)) {
+        driver = new FirefoxDriver();
+      } else if (Objects.equals(browser, BrowserType.CHROME)) {
+        driver = new ChromeDriver();
+      } else if (Objects.equals(browser, BrowserType.IE)) {
+        driver = new InternetExplorerDriver();
+      }
+      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.get(properties.getProperty("web.baseUrl"));  // url-адрес берется из конфигурационного файла local.properties
+    }
+    return driver;
   }
 }
