@@ -24,4 +24,21 @@ public class RegistrationHelper extends HelperBase {
     type(By.name("password_confirm"), password);
     click(By.cssSelector("input[value='Update User']"));
   }
+
+  public void loginAsAdmin(String username, String password) {
+    type(By.name("username"), username);
+    type(By.name("password"), password);
+    click(By.cssSelector("input[value='Login']"));
+  }
+
+  public void resetPassword(String username) {
+    selectUser(username);
+    click(By.cssSelector("input[value='Reset Password']"));
+  }
+
+  private void selectUser(String username) {
+    click(By.xpath("//a[text()='" + username + "']"));
+  }
+
+
 }
